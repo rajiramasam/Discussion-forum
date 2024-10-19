@@ -1,13 +1,23 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
-{% block content %}
 
-<h1 style="text-align:center; margin-block:50px; color:red;">Hey {{user}}, Write something</h1>
+{% block content %}
+<h1 style="text-align:center; margin-block:50px; color:red;">Hey {{ user }}, Write something</h1>
 
 <form method="POST" style="margin-left:150px;">
-    {% csrf_token %}    
-    {{form|crispy}}
-    <input type="submit" value="Save"  style="margin-block:50px;">
+    {% csrf_token %}
+    
+    <!-- Render each form field manually -->
+    {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            <div class="text-danger">
+                {{ field.errors }}
+            </div>
+        </div>
+    {% endfor %}
+    
+    <input type="submit" value="Save" style="margin-block:50px;">
 </form>
 
 {% endblock content %}

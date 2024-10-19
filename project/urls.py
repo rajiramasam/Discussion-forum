@@ -15,7 +15,5 @@ urlpatterns = [
     re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}), 
     re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}), 
     #path(r'^(?P<id>\d+)/$',views.update_post, name='update_post'),
-
-
-
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

@@ -1,30 +1,27 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
+
 {% block content %}
+<h1 style="text-align: center; margin-block: 50px; color: red;">Log In</h1>
 
-<h1 style="text-align:center; margin-block:50px; color:red;"> LogIn</h1>
+<form method="POST" action="." style="margin-left: 150px;">
+    {% csrf_token %}
+    
+    <div class="form-group">
+        <label for="id_username">Username:</label>
+        <input type="text" name="username" id="id_username" class="form-control" value="{{ form.username.value }}">
+        <div class="text-danger">
+            {{ form.username.errors }}
+        </div>
+    </div>
 
-<form method="POST" action="." style="margin-left:150px;">
-{% csrf_token %}
-{{form|crispy}}
-<input type="submit" value="signin" style="margin-block:50px;">
+    <div class="form-group">
+        <label for="id_password">Password:</label>
+        <input type="password" name="password" id="id_password" class="form-control" value="{{ form.password.value }}">
+        <div class="text-danger">
+            {{ form.password.errors }}
+        </div>
+    </div>
 
-
-
-
+    <input type="submit" value="Sign In" class="btn btn-primary" style="margin-block: 50px;">
 </form>
-
-
-
-
 {% endblock content %}
-
-
-
-
-
-
-
-
-
-
